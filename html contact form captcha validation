@@ -1,0 +1,148 @@
+
+<script type="text/javascript">
+      jQuery(document).ready(function(){
+        jQuery('input[name="phone"]').keyup(function(e){
+          if (/\D/g.test(this.value))
+          {
+            this.value = this.value.replace(/\D/g, '');
+          }
+        });
+      });
+        jQuery('input[name="name"]').keyup(function (e) {
+      if (/\d+/g.test(this.value))
+      {
+        this.value = this.value.replace(/\d+/g,'');
+      }
+    });   
+    </script>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    var n1 = Math.round(Math.random() * 10 + 1);
+    var n2 = Math.round(Math.random() * 10 + 1);
+    $("#a").val(n1 + " + " + n2);
+    // $("#c").click(function() {
+        
+    // });
+});
+$(document).ready(function() {
+    var n11 = Math.round(Math.random() * 10 + 1);
+    var n22 = Math.round(Math.random() * 10 + 1);
+    $("#a1").val(n11 + " + " + n22);
+    // $("#c").click(function() {
+        
+    // });
+});
+    function GEEKFORGEEKS() { 
+        var name = document.forms["RegForm"]["name"]; 
+        var email = document.forms["RegForm"]["email"]; 
+        var phone = document.forms["RegForm"]["phone"]; 
+
+        
+        var address = document.forms["RegForm"]["message"]; 
+  
+        if (name.value == "") { 
+            window.alert("Please enter your name."); 
+            name.focus(); 
+            return false; 
+        } 
+         if (email.value == "") { 
+            window.alert( 
+              "Please enter a valid e-mail address."); 
+            email.focus(); 
+            return false; 
+        } 
+        if (phone.value == "") { 
+            window.alert( 
+              "Please enter your telephone number."); 
+            phone.focus(); 
+            return false; 
+        } 
+      
+        if (address.value == "") { 
+            alert("Please enter your message."); 
+            address.focus(); 
+            return false; 
+        }
+        if (eval($("#a").val()) != $("#b").val()) {
+            alert("Invalid Captcha");
+            return false
+        }
+        
+        return true; 
+    } 
+  </script>
+
+
+		<div class="wm-main-section wm-contactus-form-bg">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="wm-contactus-title">
+								<h2>Contact Us Today</h2>
+							</div>
+							<div class="wm-contact-us-form-section">
+								<form action="action.php" method="POST" name="RegForm" onsubmit="return GEEKFORGEEKS()">
+									<ul>
+										<li class="full">
+											<input type="text"
+												placeholder="Your Name" id="name" name="name" >
+										</li>
+										<li>
+											<input type="text"
+												placeholder="Your E-mail" id="email" name="email" >
+										</li>
+										<li>
+											<input type="text"
+												placeholder="Your Phone Number" id="phone" name="phone" >
+										</li>
+										<li class="full">
+											<textarea placeholder="Your Message..." id="message"
+												name="message" ></textarea>
+										</li>	
+										<li class="three-section"> Solve Captcha :</li>
+										<li class="three-section"><input type="text" id="a" readonly style="border:none;font-size:20px;"/></li>
+                    <li class="three-section"> <input type="text" id="b"/></li>
+										<li class="full">
+											<input type="submit" id="submit" name="submit" value="send">
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+      
+//action.php      
+      <?php
+
+if(isset($_POST['submit']))
+{
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+    $visitor_email = $_POST['email'];
+    $enquiry_msg = $_POST['message'];
+
+    $email_from = $visitor_email;
+    $email_subject = "admin";
+    $email_body = "You have received a new message from the Email ID $visitor_email. \n Name: $name \n Phone Number: $phone \n Message: $enquiry_msg";
+
+    $to1 = "admin@gmail.com";
+    $headers = "From: info@admin.com";
+    $headers = "Reply-To: $visitor_email \r\n";
+    $headers = 'Bcc: admin@admin.com';
+
+    //send the email
+    if (mail($to1, $email_subject, $email_body, $headers)) {
+        header('Location: thank-you.html');
+    }
+    }else{
+
+         echo "error; you need to submit the form!";
+    }
+
+?>
+    
